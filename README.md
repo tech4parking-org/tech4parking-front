@@ -1,2 +1,2 @@
-# web-app-vagasaservice
-The VagasAService application web using NextJS with TypeScript and TailwindCSS.
+# tech4parking-app
+Parking car app for Tech4Parking
