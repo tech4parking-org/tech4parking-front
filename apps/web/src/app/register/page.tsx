@@ -1,10 +1,23 @@
-import { RegisterForm } from '@vagasaservice/ui/src/components/templates/RegisterForm'
-import { AuthLayout } from '@vagasaservice/ui/src/components/molecules/AuthLayout'
+import { RegisterForm } from '@/components/templates/RegisterForm'
+import { AuthLayout } from '@/components/templates/AuthLayout'
+
+import { Header } from '@/components/organisms/Header'
+import { Container } from '@/components/atoms/Container'
+
+const MENUITEMS = [
+  { label: 'Buscar', href: '/search' },
+  { label: 'Reservas', href: '/bookings' },
+]
 
 export default function Page() {
   return (
-    <AuthLayout title={'Register'}>
-      <RegisterForm />
-    </AuthLayout>
+    <div>
+      <Header menuItems={MENUITEMS} />
+      <Container>
+        <AuthLayout title={'Register'}>
+          <RegisterForm />
+        </AuthLayout>
+      </Container>
+    </div>
   )
 }
