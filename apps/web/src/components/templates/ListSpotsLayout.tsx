@@ -19,7 +19,7 @@ export const ListSpotsLayout: React.FC = () => {
       setIsLoading(true)
       setError(null)
       try {
-        const response = await axios.get('https://API_GATEWAY_REMOVED/prod/spots', {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_SPOTS_API_URL}/spots`, {
           headers: {
             'Content-Type': 'application/json',
           },

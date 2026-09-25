@@ -52,7 +52,7 @@ export const RegisterSpot: React.FC = () => {
     if (!validateForm()) return
 
     try {
-      const response = await axios.post('https://API_GATEWAY_REMOVED/prod/spots', spotData)
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_SPOTS_API_URL}/spots`, spotData)
       setAlert({ message: `Vaga criada com sucesso! Redirecionando...`, type: 'success' })
       
       // Aguarda 2 segundos antes de redirecionar

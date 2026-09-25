@@ -9,7 +9,7 @@ const MENUITEMS = [
     { label: 'Buscar', href: '/search' },
   ]
 
-export const CreateSpot = () => {
+const CreateSpot = () => {
     return (
         <div>
             <AppHeader menuItems={MENUITEMS}/>

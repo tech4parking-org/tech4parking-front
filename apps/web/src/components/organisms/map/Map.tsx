@@ -15,7 +15,7 @@ export const MapT = ({ ...props }: MapProps) => {
       }}
       mapStyle="mapbox://styles/tech4parking/cm031gtjv009901qvbeewg6k6"
       attributionControl={false}  // Desativa o controle de copyright
-      mapboxAccessToken="MAPBOX_TOKEN_REMOVED"
+      mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
       style={{ }}
       scrollZoom={false}
     >

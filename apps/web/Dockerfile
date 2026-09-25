@@ -1,23 +1,20 @@
-# Use uma imagem base do Node.js
-FROM node:18-alpine
-
-# Defina o diretório de trabalho
+FROM node:20-alpine AS build
 WORKDIR /app
-
-# Copie os arquivos de dependências
 COPY package.json package-lock.json ./
-
-# Instale as dependências
-RUN npm install
-
-# Copie todo o código da aplicação
+RUN npm ci --no-audit --no-fund
 COPY . .
-
-# Execute o build de produção do Next.js
+# Variáveis NEXT_PUBLIC_* entram no bundle no momento do build
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_SPOTS_API_URL
+ARG NEXT_PUBLIC_MAPBOX_TOKEN
+ARG NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+ARG NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+ARG NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
 RUN npm run build
 
-# Exponha a porta que o app irá rodar
+FROM node:20-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=build /app ./
 EXPOSE 3000
-
-# Comando para iniciar o servidor de produção
 CMD ["npm", "start"]
