@@ -103,6 +103,19 @@ npm run dev
 
 Sem as chaves as telas abrem, mas mapa, login, pagamento, upload e dados das vagas não funcionam.
 
+## Como validar a entrega
+
+Em uma validação end-to-end, o site deve abrir pelo domínio, listar as vagas vindas da API e refletir na tela a mudança feita pelo sensor.
+
+Pontos principais de validação:
+
+- `GET /api/health` respondendo `200`;
+- páginas `/`, `/search`, `/list-spots`, `/register-spot`, `/login` e `/register` carregando;
+- `/list-spots` exibindo as vagas retornadas por `GET /spots`;
+- cadastro em `/register-spot` criando a vaga via `POST /spots`;
+- mapa e rotas funcionando com o token do Mapbox;
+- imagem Docker de produção subindo com `docker compose up -d --build`.
+
 ## Projeto Tech4Parking
 
 | Repositório | Camada |
