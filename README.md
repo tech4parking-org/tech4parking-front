@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/logo.png" alt="T4Parking" width="260" />
+</p>
+
 <h1 align="center">
   Tech4Parking · Front
 </h1>
@@ -8,7 +12,7 @@
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,graphql,docker,aws" alt="Stacks" />
+    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,threejs,graphql,docker,aws" alt="Stacks" />
   </a>
 </p>
 
@@ -35,6 +39,7 @@ Em produção, o site roda no **ECS Fargate** atrás de um **Application Load Ba
 | `/` | Página inicial |
 | `/search` | Busca de vagas no mapa, com rota até a vaga |
 | `/list-spots` | Lista das vagas e da disponibilidade de cada uma |
+| `/parking` | **Estacionamento ao vivo em 3D**: carros entram e saem conforme os sensores, com totais de vagas livres e ocupadas |
 | `/register-spot` | Cadastro de uma nova vaga (nome, latitude, longitude) |
 | `/login`, `/register` | Autenticação |
 | `/api/health` | Health check da aplicação |
@@ -55,6 +60,7 @@ Em produção, o site roda no **ECS Fargate** atrás de um **Application Load Ba
 - **Next.js 14 + React:** framework web com renderização no servidor;
 - **TypeScript:** tipagem de todo o código;
 - **Tailwind CSS:** estilização;
+- **Three.js + React Three Fiber:** cenas 3D da home e do estacionamento ao vivo;
 - **Mapbox:** mapas e rotas;
 - **Stripe:** pagamentos;
 - **NextAuth:** autenticação com Google;
@@ -67,12 +73,14 @@ Em produção, o site roda no **ECS Fargate** atrás de um **Application Load Ba
 ```text
 tech4parking-front/
 ├── apps/web/
-│   ├── src/app/                 # Páginas (App Router)
+│   ├── src/app/                 # Páginas (App Router), incluindo /parking
+│   ├── src/components/3d/       # Cenas 3D (home e estacionamento ao vivo)
 │   ├── src/components/          # Componentes (atoms, organisms, templates)
 │   ├── .env.example             # Variáveis de ambiente necessárias
 │   └── Dockerfile               # Imagem de produção
 ├── docs/
 │   ├── demo.gif                 # Demonstração do app
+│   ├── logo.png                 # Logo T4Parking
 │   └── arch.gif                 # Diagrama da arquitetura
 ├── docker-compose.yml           # Sobe o site em modo produção
 └── README.md
@@ -86,6 +94,7 @@ tech4parking-front/
 4. A API Gateway invoca a Lambda `process_car_parking`, que lê a tabela `ParkingSpots` no DynamoDB.
 5. Em paralelo, o sensor da vaga publica mudanças de ocupação no AWS IoT Core, e a Lambda atualiza a tabela.
 6. O site mostra cada vaga como **disponível** ou **ocupada**, com mapa, rota e reserva.
+7. Em `/parking`, o estacionamento 3D consulta `/spots` a cada 3 segundos e anima a entrada e a saída dos carros.
 
 ## Como rodar
 
@@ -118,7 +127,8 @@ Em uma validação end-to-end, o site deve abrir pelo domínio, listar as vagas 
 Pontos principais de validação:
 
 - `GET /api/health` respondendo `200`;
-- páginas `/`, `/search`, `/list-spots`, `/register-spot`, `/login` e `/register` carregando;
+- páginas `/`, `/search`, `/list-spots`, `/parking`, `/register-spot`, `/login` e `/register` carregando;
+- `/parking` mostrando as vagas em 3D e atualizando os carros quando a disponibilidade muda;
 - `/list-spots` exibindo as vagas retornadas por `GET /spots`;
 - cadastro em `/register-spot` criando a vaga via `POST /spots`;
 - mapa e rotas funcionando com o token do Mapbox;
