@@ -1,8 +1,8 @@
 import colors from 'tailwindcss/colors'
 
-const brandHue = 52
+const brandHue = 39
 
-// #ffdd00 for brandHue 52
+// #fba507 (laranja da logo T4Parking) for brandHue 39
 const primaryPallete = {
   DEFAULT: `hsl(${brandHue}, 100%, 50%)`,
   25: `hsl(${brandHue}, 100%, 98%)`,
