@@ -7,6 +7,7 @@ import { RegisterSpot } from '@/components/templates/RegisterSpot'
 const MENUITEMS = [
     { label: 'Cadastrar Vagas', href: '/register-spot' },
     { label: 'Buscar', href: '/search' },
+    { label: 'Ao vivo', href: '/parking' },
   ]
 
 const CreateSpot = () => {

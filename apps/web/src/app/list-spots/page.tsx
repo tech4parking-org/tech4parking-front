@@ -10,6 +10,7 @@ import { ListSpotsLayout } from '@/components/templates/ListSpotsLayout'
 const MENUITEMS = [
   { label: 'Cadastrar Vagas', href: '/register-spot' },
   { label: 'Buscar', href: '/search' },
+  { label: 'Ao vivo', href: '/parking' },
 ]
 
 export default function Page() {
