@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <img src="docs/arch.gif" alt="Arquitetura do Tech4Parking na AWS" />
+  <img src="docs/demo.gif" alt="Demonstração do web app VagasAService" />
 </p>
 
 <p align="center">
@@ -19,6 +19,12 @@ Web app do **VagasAService**, a plataforma do **Tech4Parking** para encontrar, r
 A disponibilidade de cada vaga vem de sensores reais: um **ESP32** instalado na vaga publica no **AWS IoT Core** se ela está ocupada ou livre, e a **Lambda** do projeto grava esse estado no **DynamoDB**. O front consome esses dados pela **API Gateway**.
 
 Em produção, o site roda no **ECS Fargate** atrás de um **Application Load Balancer**, com domínio no **Route 53** e HTTPS pelo **ACM**.
+
+## Arquitetura
+
+<p align="center">
+  <img src="docs/arch.gif" alt="Arquitetura do Tech4Parking na AWS" />
+</p>
 
 ## O que foi construído
 
@@ -65,7 +71,9 @@ tech4parking-front/
 │   ├── src/components/          # Componentes (atoms, organisms, templates)
 │   ├── .env.example             # Variáveis de ambiente necessárias
 │   └── Dockerfile               # Imagem de produção
-├── docs/arch.gif                # Diagrama da arquitetura
+├── docs/
+│   ├── demo.gif                 # Demonstração do app
+│   └── arch.gif                 # Diagrama da arquitetura
 ├── docker-compose.yml           # Sobe o site em modo produção
 └── README.md
 ```
